@@ -849,7 +849,7 @@ proc dumpHook*[N, T](s: var string, v: array[N, t[T]]) =
   s.add '}'
 
 proc dumpHook*(s: var string, v: ref) =
-  if v == nil:
+  if isNil(v):
     s.add "null"
   else:
     s.dumpHook(v[])
@@ -866,7 +866,7 @@ proc dumpHook*[T](s: var string, v: SomeSet[T]|set[T]) =
 
 proc dumpHook*(s: var string, v: JsonNode) =
   ## Dumps a regular json node.
-  if v.isNil:
+  if isNil(v):
     s.add "null"
   else:
     case v.kind:
